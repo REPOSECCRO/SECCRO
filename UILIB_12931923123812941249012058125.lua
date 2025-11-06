@@ -1492,15 +1492,15 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 		end) then
 		writefile(getgenv().Global.ConfigName, HttpService:JSONEncode(getgenv().LastSaves))
 	end
-	getgenv().Saves = HttpService:JSONDecode(readfile(getgenv().Global.ConfigName))
-	if (not getgenv().Saves['Version']) or getgenv().Saves['Version'] ~= getgenv().Global.TodayVersion then
+	Saves = HttpService:JSONDecode(readfile(getgenv().Global.ConfigName))
+	if (not Saves['Version']) or Saves['Version'] ~= getgenv().Global.TodayVersion then
 		for i, v in pairs(getgenv().LastSaves) do
-			if not getgenv().Saves[i] then
-				getgenv().Saves[i] = v
+			if not Saves[i] then
+				Saves[i] = v
 			end
 		end
-		getgenv().Saves['Version'] = getgenv().Global.TodayVersion
-		writefile(getgenv().Global.ConfigName, HttpService:JSONEncode(getgenv().Saves))
+		Saves['Version'] = getgenv().Global.TodayVersion
+		writefile(getgenv().Global.ConfigName, HttpService:JSONEncode(Saves))
 		getgenv().Global.Resetted = true
 	end
 	if not getgenv().Global['Resetted'] then
@@ -1513,7 +1513,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 		['DropdownUI.png'] = 'https://drive.google.com/uc?export=download&id=1hl6kq5y4csIKiv0tY_WoL-d-czLqo2oZ',
 		['TextboxUI.png'] = 'https://drive.google.com/uc?export=download&id=1ALX7HxokZaIYabRhicoqhCOUQTDx28-V'
 	}
-	SaveTable = getgenv().Saves
+	SaveTable = Saves
 	local HubTitle = HubTitle or 'Akundisco UI Library Hub'
 	local ImageHub = ImageHub or 'rbxassetid://113474562563978'
 	if string.find(ImageHub:lower(), 'https://drive.google.com') then
