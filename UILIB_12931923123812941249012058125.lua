@@ -1519,7 +1519,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 	if string.find(ImageHub:lower(), 'https://drive.google.com') then
 		AssetsToDownload[HubTitle..'.png'] = ImageHub
 	end
-	
+
 	local function DictionaryLength(Dictionary)
 		local Counter = 0
 		for i, v in pairs(Dictionary) do
@@ -1546,7 +1546,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 	if Message then
 		Message:Destroy()
 	end
-	
+
 	local HubColor = HubColor or Color3.fromRGB(136, 6, 8)
 	Main.BackgroundColor3 = HubColor
 	Main.UIStroke.Color = Color3.fromRGB(((Main.BackgroundColor3.R*255)*1.2)/1.4, ((Main.BackgroundColor3.G*255)*1.2)/1.4, ((Main.BackgroundColor3.B*255)*1.2)/1.4)
@@ -1555,8 +1555,13 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 	HandleColor(Closed, Main, 1.3)
 
 	TitleHub.Text = tostring(HubTitle)
-	LogoHub.Image = tostring(ImageHub)
-	Closed.Image = tostring(ImageHub)
+	if string.find(ImageHub:lower(), 'https://drive.google.com') then
+		LogoHub.Image = getcustomasset(HubTitle..'.png')
+		Closed.Image = getcustomasset(HubTitle..'.png')
+	else
+		LogoHub.Image = tostring(ImageHub)
+		Closed.Image = tostring(ImageHub)
+	end
 	function C:AddSection(Title, Image)
 		local A = {}
 		local Title = Title or 'Untitled Section'
