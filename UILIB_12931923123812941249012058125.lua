@@ -4,6 +4,10 @@ cloneref = cloneref or function(A) return A end
 RunService = cloneref(game:GetService('RunService'))
 gethui = gethui or function(A) if RunService:IsStudio() then return game.Players.LocalPlayer:WaitForChild('PlayerGui') else return game:GetService('CoreGui') end; end
 get_hidden_gui = get_hidden_gui or function(A) if RunService:IsStudio() then return game.Players.LocalPlayer:WaitForChild('PlayerGui') else return game:GetService('CoreGui') end; end
+writefile = writefile or nil
+readfile = readfile or nil
+getgenv = getgenv or nil
+getcustomasset = getcustomasset or nil
 
 -- StarterGui.AkunDiscoUILib
 G2L["1"] = cloneref(Instance.new('ScreenGui'));
@@ -1488,23 +1492,61 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 		end) then
 		writefile(getgenv().Global.ConfigName, HttpService:JSONEncode(getgenv().LastSaves))
 	end
-	Saves = HttpService:JSONDecode(readfile(getgenv().Global.ConfigName))
-	if (not Saves['Version']) or Saves['Version'] ~= getgenv().Global.TodayVersion then
+	getgenv().Saves = HttpService:JSONDecode(readfile(getgenv().Global.ConfigName))
+	if (not getgenv().Saves['Version']) or getgenv().Saves['Version'] ~= getgenv().Global.TodayVersion then
 		for i, v in pairs(getgenv().LastSaves) do
-			if not Saves[i] then
-				Saves[i] = v
+			if not getgenv().Saves[i] then
+				getgenv().Saves[i] = v
 			end
 		end
-		Saves['Version'] = getgenv().Global.TodayVersion
-		writefile(getgenv().Global.ConfigName, HttpService:JSONEncode(Saves))
+		getgenv().Saves['Version'] = getgenv().Global.TodayVersion
+		writefile(getgenv().Global.ConfigName, HttpService:JSONEncode(getgenv().Saves))
 		getgenv().Global.Resetted = true
 	end
 	if not getgenv().Global['Resetted'] then
 		getgenv().Global.Resetted = false
 	end
-	SaveTable = Saves
+	local AssetsToDownload = {
+		['ToggleUI.png'] = 'https://drive.google.com/uc?export=download&id=10d17R95-vRcsSe55hxIAAfK6njLFg9I_',
+		['ButtonUI.png'] = 'https://drive.google.com/uc?export=download&id=1HILWgbxT4Rg8IL0Iot2utELDMeHlvP6c',
+		['TabButtonUI.png'] = 'https://drive.google.com/uc?export=download&id=10lYj4_a-tsLclV0pT7BWDaGJN8iqdh2g',
+		['DropdownUI.png'] = 'https://drive.google.com/uc?export=download&id=1hl6kq5y4csIKiv0tY_WoL-d-czLqo2oZ',
+		['TextboxUI.png'] = 'https://drive.google.com/uc?export=download&id=1ALX7HxokZaIYabRhicoqhCOUQTDx28-V'
+	}
+	SaveTable = getgenv().Saves
 	local HubTitle = HubTitle or 'Akundisco UI Library Hub'
 	local ImageHub = ImageHub or 'rbxassetid://113474562563978'
+	if string.find(ImageHub:lower(), 'https://drive.google.com') then
+		AssetsToDownload[HubTitle..'.png'] = ImageHub
+	end
+	
+	local function DictionaryLength(Dictionary)
+		local Counter = 0
+		for i, v in pairs(Dictionary) do
+			Counter = Counter + 1
+		end
+		return Counter
+	end
+
+	local Message
+	local IterateCount = 1
+	for i, v in pairs(AssetsToDownload) do
+		if not pcall(function() readfile(i) end) then
+			if not Message then
+				Message = Instance.new('Message')
+				Message.Parent = gethui()
+			end
+			Message.Text = 'AKUNDISCO UI LIBRARY: Downloading '..tostring(IterateCount)..'/'..tostring(DictionaryLength(AssetsToDownload))..' Assets to stay undetected'
+			writefile(i, game:HttpGet(v))
+			repeat task.wait() until pcall(function() readfile(i) end)
+		end
+		IterateCount = IterateCount + 1
+	end
+
+	if Message then
+		Message:Destroy()
+	end
+	
 	local HubColor = HubColor or Color3.fromRGB(136, 6, 8)
 	Main.BackgroundColor3 = HubColor
 	Main.UIStroke.Color = Color3.fromRGB(((Main.BackgroundColor3.R*255)*1.2)/1.4, ((Main.BackgroundColor3.G*255)*1.2)/1.4, ((Main.BackgroundColor3.B*255)*1.2)/1.4)
@@ -1518,7 +1560,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 	function C:AddSection(Title, Image)
 		local A = {}
 		local Title = Title or 'Untitled Section'
-		local Image = Image or 'rbxassetid://131861984096468'
+		local Image = Image or getcustomasset('TabButtonUI.png')
 		local TabButton = Storage.TabButton:Clone()
 		local Section = Storage.SectionFrame:Clone()
 		TabButton.Title.Text = tostring(Title)
@@ -1552,7 +1594,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 		function A:AddButton(Title, Image)
 			local T = {}
 			local Title = Title or 'Button Title'
-			local Image = Image or 'rbxassetid://104325266283928'
+			local Image = Image or getcustomasset('ButtonUI.png')
 			local Cloned = Storage.SectionButton:Clone()
 			HandleColor(Cloned, Section, 1.3)
 			Cloned.Title.Text = tostring(Title)
@@ -1609,7 +1651,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 				Cloned.DropdownPanel.Visible = Opened
 			end))
 			Cloned.DropdownPanel.Visible = false
-			Cloned.Logo.Image = Image or 'rbxassetid://71128992355167'
+			Cloned.Logo.Image = Image or getcustomasset('DropdownUI.png')
 			Cloned.Title.Text = Title
 			Cloned.Visible = true
 			Cloned.Parent = Section
@@ -1662,7 +1704,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 			local Title = Title or 'Toggle Title'
 			local SBool = Bool or false
 			local SaveName = SaveName or Title..'Save'
-			local Image = Image or 'rbxassetid://96621382395693'
+			local Image = Image or getcustomasset('ToggleUI.png')
 			local Cloned = Storage.SectionToggle:Clone()
 			HandleColor(Cloned, Section, 1.3)
 			Cloned.Title.Text = tostring(Title)
@@ -1705,7 +1747,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 			local Title = Title or 'TextBox Title'
 			local Placeholder = Placeholder or 'TextBox Placeholder'
 			local Value = Value or 'TextBox Value'
-			local Image = Image or 'rbxassetid://112688803491006'
+			local Image = Image or getcustomasset('TextboxUI.png')
 			local SaveName = SaveName or Title..'Save'
 			local Cloned = Storage.SectionBox:Clone()
 			Cloned.Parent = Section
