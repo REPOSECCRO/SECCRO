@@ -1599,7 +1599,6 @@ end
 function G:Intialize(HubTitle, ImageHub, HubColor)
 	local C = {}
 	local SaveTable = {}
-	local HttpService = cloneref(game:GetService('HttpService'))
 	if not pcall(function()
 			readfile(getgenv().Global.ConfigName)
 		end) then
@@ -1624,7 +1623,8 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 		['ButtonUI.png'] = 'https://drive.google.com/uc?export=download&id=1HILWgbxT4Rg8IL0Iot2utELDMeHlvP6c',
 		['TabButtonUI.png'] = 'https://drive.google.com/uc?export=download&id=10lYj4_a-tsLclV0pT7BWDaGJN8iqdh2g',
 		['DropdownUI.png'] = 'https://drive.google.com/uc?export=download&id=1hl6kq5y4csIKiv0tY_WoL-d-czLqo2oZ',
-		['TextboxUI.png'] = 'https://drive.google.com/uc?export=download&id=1ALX7HxokZaIYabRhicoqhCOUQTDx28-V'
+		['TextboxUI.png'] = 'https://drive.google.com/uc?export=download&id=1ALX7HxokZaIYabRhicoqhCOUQTDx28-V',
+		['SliderUI.png'] = 'https://drive.google.com/uc?export=download&id=1elzjkQrQi4LUV5PlyPM4uMrEsl_HdziQ'
 	}
 	SaveTable = Saves
 	local HubTitle = HubTitle or 'Akundisco UI Library Hub'
@@ -1649,7 +1649,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 				Message = Instance.new('Message')
 				Message.Parent = gethui()
 			end
-			Message.Text = 'AKUNDISCO UI LIBRARY: Downloading '..tostring(IterateCount)..'/'..tostring(DictionaryLength(AssetsToDownload))..' Assets to stay undetected'
+			Message.Text = 'AKUNDISCO UI LIBRARY: Downloading ('..i..')'..tostring(IterateCount)..'/'..tostring(DictionaryLength(AssetsToDownload))..' Assets to stay undetected'
 			writefile(i, game:HttpGet(v))
 			repeat task.wait() until pcall(function() readfile(i) end)
 		end
@@ -1661,6 +1661,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 	end
 
 	local HubColor = HubColor or Color3.fromRGB(136, 6, 8)
+	local ImageHub = ImageHub or 'rbxassetid://1'
 	Main.BackgroundColor3 = HubColor
 	Main.UIStroke.Color = Color3.fromRGB(((Main.BackgroundColor3.R*255)*1.2)/1.4, ((Main.BackgroundColor3.G*255)*1.2)/1.4, ((Main.BackgroundColor3.B*255)*1.2)/1.4)
 	AutoColorChildren(Main)
@@ -1712,14 +1713,16 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 		function A:AddSlider(Title, Image)
 			local T = {}
 			local Title = Title or 'Slider Title'
-			local Image = Image or getcustomasset('ButtonUI.png')
+			local Image = Image or getcustomasset('SliderUI.png')
 			local Cloned = Storage.SectionSlider:Clone()
 			HandleColor(Cloned, Section, 1.3)
 			Cloned.Title.Text = tostring(Title)
 			Cloned.Logo.Image = tostring(Image)
 			Cloned.Parent = Section
 			Cloned.SliderContainer.Slider.UIDragDetector.BoundingUI = Cloned.SliderContainer
+			Cloned.SliderContainer.BackgroundColor3 = Color3.fromRGB(255,255,255)
 			Cloned.SliderContainer.Slider.UIDragDetector.ReferenceUIInstance = Cloned.SliderContainer
+			Cloned.SliderContainer.UIGradient.Offset = Vector2.new(Cloned.SliderContainer.Slider.Position.X.Scale - .6, 0)
 			Cloned.Visible = true
 			function T:Handle(Function)
 				table.insert(IC, Cloned.SliderContainer.Slider.UIDragDetector.DragEnd:Connect(function()
@@ -1727,7 +1730,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 					Function(Cloned.SliderContainer.Slider.UIDragDetector.DragUDim2.X.Scale)
 				end))
 				table.insert(IC, Cloned.SliderContainer.Slider.UIDragDetector.DragContinue:Connect(function()
-					Cloned.SliderContainer.UIGradient.Offset = Vector2.new(Cloned.SliderContainer.Slider.X.Scale - .5, 0)
+					Cloned.SliderContainer.UIGradient.Offset = Vector2.new(Cloned.SliderContainer.Slider.Position.X.Scale - .6, 0)
 				end))
 			end
 			return T
