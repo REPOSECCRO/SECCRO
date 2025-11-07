@@ -350,6 +350,107 @@ G2L["28"]["CornerRadius"] = UDim.new(1, 0);
 G2L["29"] = Instance.new("Folder", G2L["1"]);
 G2L["29"]["Name"] = [[Storage]];
 
+-- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider
+G2L["3000"] = Instance.new("Frame", G2L["29"]);
+G2L["3000"]["Visible"] = false;
+G2L["3000"]["BorderSizePixel"] = 0;
+G2L["3000"]["BackgroundColor3"] = Color3.fromRGB(206, 0, 9);
+G2L["3000"]["Size"] = UDim2.new(0, 410, 0, 40);
+G2L["3000"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["3000"]["Name"] = [[SectionSlider]];
+
+
+-- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider.UICorner
+G2L["9992"] = Instance.new("UICorner", G2L["3000"]);
+
+
+
+-- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider.UIStroke
+G2L["3002"] = Instance.new("UIStroke", G2L["3000"]);
+G2L["3002"]["Thickness"] = 2.5;
+G2L["3002"]["Color"] = Color3.fromRGB(163, 0, 7);
+
+
+-- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider.Title
+G2L["2930"] = Instance.new("TextLabel", G2L["3000"]);
+G2L["2930"]["TextWrapped"] = true;
+G2L["2930"]["BorderSizePixel"] = 0;
+G2L["2930"]["TextSize"] = 14;
+G2L["2930"]["TextScaled"] = true;
+G2L["2930"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["2930"]["FontFace"] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["2930"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["2930"]["BackgroundTransparency"] = 1;
+G2L["2930"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["2930"]["Size"] = UDim2.new(0, 190, 0, 21);
+G2L["2930"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["2930"]["Text"] = [[Text]];
+G2L["2930"]["LayoutOrder"] = 2;
+G2L["2930"]["Name"] = [[Title]];
+G2L["2930"]["Position"] = UDim2.new(0.3, 0, 0.5, 0);
+
+
+-- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider.Title.UIStroke
+G2L["3299"] = Instance.new("UIStroke", G2L["2930"]);
+G2L["3299"]["Thickness"] = 1.5;
+G2L["3299"]["Color"] = Color3.fromRGB(146, 0, 9);
+
+
+-- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider.Logo
+G2L["2317"] = Instance.new("ImageLabel", G2L["3000"]);
+G2L["2317"]["BorderSizePixel"] = 0;
+G2L["2317"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["2317"]["Image"] = [[rbxassetid://80071049761416]];
+G2L["2317"]["Size"] = UDim2.new(0, 29, 0, 28);
+G2L["2317"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["2317"]["BackgroundTransparency"] = 1;
+G2L["2317"]["LayoutOrder"] = 1;
+G2L["2317"]["Name"] = [[Logo]];
+G2L["2317"]["Position"] = UDim2.new(0, 0, 0.11111, 0);
+
+
+-- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider.SliderContainer
+G2L["8463"] = Instance.new("Frame", G2L["3000"]);
+G2L["8463"]["BorderSizePixel"] = 0;
+G2L["8463"]["BackgroundColor3"] = Color3.fromRGB(196, 0, 12);
+G2L["8463"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["8463"]["Size"] = UDim2.new(0, 160, 0, 35);
+G2L["8463"]["Position"] = UDim2.new(0.5, 110, 0.5, 0);
+G2L["8463"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["8463"]["Name"] = [[SliderContainer]];
+
+
+-- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider.SliderContainer.Slider
+G2L["9132"] = Instance.new("Frame", G2L["8463"]);
+G2L["9132"]["BorderSizePixel"] = 0;
+G2L["9132"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["9132"]["Size"] = UDim2.new(0, 30, 1, 0);
+G2L["9132"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["9132"]["Name"] = [[Slider]];
+
+
+-- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider.SliderContainer.Slider.UICorner
+G2L["23091"] = Instance.new("UICorner", G2L["9132"]);
+
+
+-- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider.SliderContainer.Slider.UIDragDetector
+G2L["31239"] = Instance.new("UIDragDetector", G2L["9132"]);
+G2L["31239"]["ResponseStyle"] = Enum.UIDragDetectorResponseStyle.Scale;
+G2L["31239"]["BoundingUI"] = G2L["31239"].Parent
+G2L["31239"]["DragStyle"] = Enum.UIDragDetectorDragStyle.TranslateLine;
+G2L["31239"]["DragRelativity"] = Enum.UIDragDetectorDragRelativity.Relative;
+
+
+-- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider.SliderContainer.UICorner
+G2L["41912"] = Instance.new("UICorner", G2L["8463"]);
+
+
+
+-- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider.SliderContainer.UIStroke
+G2L["12391"] = Instance.new("UIStroke", G2L["8463"]);
+G2L["12391"]["Thickness"] = 2.5;
+G2L["12391"]["Color"] = Color3.fromRGB(163, 0, 7);
+
 
 -- StarterGui.AkunDiscoUILib.Storage.SectionHint
 G2L["2a"] = Instance.new("Frame", G2L["29"]);
@@ -423,12 +524,13 @@ G2L["32"]["FontFace"] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], 
 G2L["32"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["32"]["BackgroundTransparency"] = 1;
 G2L["32"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["32"]["Size"] = UDim2.new(0, 60, 0, 21);
+G2L["32"]["Size"] = UDim2.new(0, 150, 0, 21);
 G2L["32"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["32"]["TextScaled"] = true;
 G2L["32"]["Text"] = [[Text]];
 G2L["32"]["LayoutOrder"] = 2;
 G2L["32"]["Name"] = [[Title]];
-G2L["32"]["Position"] = UDim2.new(0.5, -100, 0.5, 0);
+G2L["32"]["Position"] = UDim2.new(0.53, -100, 0.5, 0);
 
 
 -- StarterGui.AkunDiscoUILib.Storage.SectionBox.Title.UIStroke
@@ -443,7 +545,7 @@ G2L["34"]["BorderSizePixel"] = 0;
 G2L["34"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 -- [ERROR] cannot convert ImageContent, please report to "https://github.com/uniquadev/GuiToLuaConverter/issues"
 G2L["34"]["Image"] = [[rbxassetid://80071049761416]];
-G2L["34"]["Size"] = UDim2.new(0, 37, 0, 28);
+G2L["34"]["Size"] = UDim2.new(0, 29, 0, 28);
 G2L["34"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["34"]["BackgroundTransparency"] = 1;
 G2L["34"]["LayoutOrder"] = 1;
@@ -533,8 +635,9 @@ G2L["3d"]["FontFace"] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], 
 G2L["3d"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["3d"]["BackgroundTransparency"] = 1;
 G2L["3d"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["3d"]["Size"] = UDim2.new(0, 60, 0, 21);
+G2L["3d"]["Size"] = UDim2.new(0, 260, 0, 21);
 G2L["3d"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["3d"]["TextScaled"] = true;
 G2L["3d"]["Text"] = [[Text]];
 G2L["3d"]["Name"] = [[Title]];
 G2L["3d"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
@@ -576,8 +679,9 @@ G2L["42"]["FontFace"] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], 
 G2L["42"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["42"]["BackgroundTransparency"] = 1;
 G2L["42"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["42"]["Size"] = UDim2.new(0, 60, 0, 21);
+G2L["42"]["Size"] = UDim2.new(0, 230, 0, 21);
 G2L["42"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["42"]["TextScaled"] = true;
 G2L["42"]["Text"] = [[Text]];
 G2L["42"]["LayoutOrder"] = 2;
 G2L["42"]["Name"] = [[Title]];
@@ -1137,8 +1241,9 @@ G2L["7e"]["FontFace"] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], 
 G2L["7e"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["7e"]["BackgroundTransparency"] = 1;
 G2L["7e"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["7e"]["Size"] = UDim2.new(0, 60, 0, 21);
+G2L["7e"]["Size"] = UDim2.new(0, 260, 0, 21);
 G2L["7e"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["7e"]["TextScaled"] = true;
 G2L["7e"]["Text"] = [[Text]];
 G2L["7e"]["Name"] = [[Title]];
 G2L["7e"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
@@ -1199,8 +1304,9 @@ G2L["84"]["FontFace"] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], 
 G2L["84"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["84"]["BackgroundTransparency"] = 1;
 G2L["84"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["84"]["Size"] = UDim2.new(0, 60, 0, 21);
+G2L["84"]["Size"] = UDim2.new(0, 260, 0, 21);
 G2L["84"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["84"]["TextScaled"] = true;
 G2L["84"]["Text"] = [[Text]];
 G2L["84"]["Name"] = [[Title]];
 G2L["84"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
@@ -1595,6 +1701,25 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 			end
 			Section.Visible = true
 		end))
+
+		function A:AddSlider(Title, Image)
+			local T = {}
+			local Title = Title or 'Slider Title'
+			local Image = Image or getcustomasset('ButtonUI.png')
+			local Cloned = Storage.SectionSlider:Clone()
+			HandleColor(Cloned, Section, 1.3)
+			Cloned.Title.Text = tostring(Title)
+			Cloned.Logo.Image = tostring(Image)
+			Cloned.Parent = Section
+			Cloned.Visible = true
+			function T:Handle(Function)
+				table.insert(IC, Cloned.SliderContainer.Slider.UIDragDetector.DragEnd:Connect(function()
+					ClickSound:Play()
+					Function(Cloned.SliderContainer.Slider.Position.X.Scale)
+				end))
+			end
+			return T
+		end
 
 		function A:AddButton(Title, Image)
 			local T = {}
