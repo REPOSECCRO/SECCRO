@@ -1711,6 +1711,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 			Cloned.Title.Text = tostring(Title)
 			Cloned.Logo.Image = tostring(Image)
 			Cloned.Parent = Section
+			Cloned.SliderContainer.Slider.UIDragDetector.BoundingUI = Cloned.SliderContainer
 			Cloned.Visible = true
 			function T:Handle(Function)
 				table.insert(IC, Cloned.SliderContainer.Slider.UIDragDetector.DragEnd:Connect(function()
