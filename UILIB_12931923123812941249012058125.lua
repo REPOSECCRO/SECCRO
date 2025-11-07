@@ -1723,7 +1723,10 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 			function T:Handle(Function)
 				table.insert(IC, Cloned.SliderContainer.Slider.UIDragDetector.DragEnd:Connect(function()
 					ClickSound:Play()
-					Function(Cloned.SliderContainer.Slider.Position.X.Scale)
+					local HandleAbsoluteX = Cloned.SliderContainer.Slider.AbsolutePosition.X
+					local ScreenAbsoluteX = Gui.AbsoluteSize.X
+					local Normalized = math.clamp(HandleAbsoluteX / ScreenAbsoluteX, 0, 1)
+					Function(Normalized)
 				end))
 				table.insert(IC, Cloned.SliderContainer.Slider.UIDragDetector.DragContinue:Connect(function()
 					Cloned.SliderContainer.UIGradient.Offset = Vector2.new(Cloned.SliderContainer.Slider.X.Scale - .5, 0)
