@@ -1709,10 +1709,11 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 			Section.Visible = true
 		end))
 
-		function A:AddSlider(Title, Image)
+		function A:AddSlider(Title, Image, SaveName)
 			local T = {}
 			local Title = Title or 'Slider Title'
 			local Image = Image or getcustomasset('SliderUI.png')
+			local SaveName = SaveName or Title..'Save'
 			local Cloned = Storage.SectionSlider:Clone()
 			HandleColor(Cloned, Section, 1.3)
 			Cloned.Title.Text = tostring(Title)
@@ -1724,6 +1725,10 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 			Cloned.SliderContainer.UIGradient.Offset = Vector2.new(Cloned.SliderContainer.Slider.Position.X.Scale - .6, 0)
 			Cloned.Visible = true
 			function T:Handle(Function)
+				if SaveTable[SaveName] and tonumber(SaveTable[SaveName]) then
+					Cloned.SliderContainer.Slider.UIDragDetector.DragUDim2 = UDim2.new(SaveTable[SaveName], Cloned.SliderContainer.Slider.UIDragDetector.DragUDim2.X.Offset, Cloned.SliderContainer.Slider.UIDragDetector.DragUDim2.Y.Scale, Cloned.SliderContainer.Slider.UIDragDetector.DragUDim2.Y.Offset)
+					Function(SaveTable[SaveName])
+				end
 				table.insert(IC, Cloned.SliderContainer.Slider.UIDragDetector.DragEnd:Connect(function()
 					ClickSound:Play()
 					local DragUdimX = Cloned.SliderContainer.Slider.UIDragDetector.DragUDim2.X.Scale
