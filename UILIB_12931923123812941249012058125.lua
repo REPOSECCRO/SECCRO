@@ -443,7 +443,6 @@ G2L["120308"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Colo
 -- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider.SliderContainer.Slider.UIDragDetector
 G2L["31239"] = Instance.new("UIDragDetector", G2L["9132"]);
 G2L["31239"]["ResponseStyle"] = Enum.UIDragDetectorResponseStyle.Scale;
-G2L["31239"]["BoundingUI"] = G2L["31239"].Parent
 G2L["31239"]["DragStyle"] = Enum.UIDragDetectorDragStyle.TranslateLine;
 G2L["31239"]["DragRelativity"] = Enum.UIDragDetectorDragRelativity.Relative;
 
@@ -1719,14 +1718,12 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 			Cloned.Logo.Image = tostring(Image)
 			Cloned.Parent = Section
 			Cloned.SliderContainer.Slider.UIDragDetector.BoundingUI = Cloned.SliderContainer
+			Cloned.SliderContainer.Slider.UIDragDetector.ReferenceUIInstance = Cloned.SliderContainer
 			Cloned.Visible = true
 			function T:Handle(Function)
 				table.insert(IC, Cloned.SliderContainer.Slider.UIDragDetector.DragEnd:Connect(function()
 					ClickSound:Play()
-					local HandleAbsoluteX = Cloned.SliderContainer.Slider.AbsolutePosition.X
-					local ScreenAbsoluteX = Gui.AbsoluteSize.X
-					local Normalized = math.clamp(HandleAbsoluteX / ScreenAbsoluteX, 0, 1)
-					Function(Normalized)
+					Function(Cloned.SliderContainer.Slider.UIDragDetector.DragAxis.X)
 				end))
 				table.insert(IC, Cloned.SliderContainer.Slider.UIDragDetector.DragContinue:Connect(function()
 					Cloned.SliderContainer.UIGradient.Offset = Vector2.new(Cloned.SliderContainer.Slider.X.Scale - .5, 0)
