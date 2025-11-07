@@ -432,6 +432,13 @@ G2L["9132"]["Name"] = [[Slider]];
 -- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider.SliderContainer.Slider.UICorner
 G2L["23091"] = Instance.new("UICorner", G2L["9132"]);
 
+G2L['294112'] = Instance.new('UIStroke', G2L['9132'])
+G2L["294112"]["Thickness"] = 1.5;
+G2L["294112"]["Color"] = Color3.fromRGB(30, 0, 0);
+
+G2L['120308'] = Instance.new('UIGradient', G2L["8463"])
+G2L["120308"]["Rotation"] = 180;
+G2L["120308"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 0, 5)),ColorSequenceKeypoint.new(0.497, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
 
 -- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider.SliderContainer.Slider.UIDragDetector
 G2L["31239"] = Instance.new("UIDragDetector", G2L["9132"]);
@@ -1717,6 +1724,9 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 				table.insert(IC, Cloned.SliderContainer.Slider.UIDragDetector.DragEnd:Connect(function()
 					ClickSound:Play()
 					Function(Cloned.SliderContainer.Slider.Position.X.Scale)
+				end))
+				table.insert(IC, Cloned.SliderContainer.Slider.UIDragDetector.DragContinue:Connect(function()
+					Cloned.SliderContainer.UIGradient.Offset = Vector2.new(Cloned.SliderContainer.Slider.X.Scale - .5, 0)
 				end))
 			end
 			return T
