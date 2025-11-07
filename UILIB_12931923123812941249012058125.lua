@@ -2,6 +2,7 @@
 local G2L = {};
 cloneref = cloneref or function(A) return A end
 RunService = cloneref(game:GetService('RunService'))
+HttpService = cloneref(game:GetService('HttpService'))
 gethui = gethui or function(A) if RunService:IsStudio() then return game.Players.LocalPlayer:WaitForChild('PlayerGui') else return game:GetService('CoreGui') end; end
 get_hidden_gui = get_hidden_gui or function(A) if RunService:IsStudio() then return game.Players.LocalPlayer:WaitForChild('PlayerGui') else return game:GetService('CoreGui') end; end
 writefile = writefile or nil
@@ -13,7 +14,7 @@ getcustomasset = getcustomasset or nil
 G2L["1"] = cloneref(Instance.new('ScreenGui'));
 if get_hidden_gui or gethui then
 	local hiddenUI = get_hidden_gui or gethui
-	G2L['1'].Name = RunService.ClientGitHash
+	G2L['1'].Name = HttpService:GenerateGUID()
 	G2L['1'].Parent = hiddenUI()
 end
 G2L["1"]["IgnoreGuiInset"] = true;
