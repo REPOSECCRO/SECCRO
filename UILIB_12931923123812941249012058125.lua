@@ -445,7 +445,6 @@ G2L["120308"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Colo
 G2L["31239"] = Instance.new("UIDragDetector", G2L["9132"]);
 G2L["31239"]["ResponseStyle"] = Enum.UIDragDetectorResponseStyle.Scale;
 G2L["31239"]["DragStyle"] = Enum.UIDragDetectorDragStyle.TranslateLine;
-G2L["31239"]["DragRelativity"] = Enum.UIDragDetectorDragRelativity.Relative;
 
 
 -- Players.GodArceusXUser.PlayerGui.AkunDiscoUILib.Storage.SectionSlider.SliderContainer.UICorner
