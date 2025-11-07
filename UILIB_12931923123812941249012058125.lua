@@ -1873,6 +1873,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 			end
 			Cloned.Visible = true
 			function T:Handle(Function)
+				local K = {}
 				if SaveTable[SaveName] ~= nil then
 					Function(SBool)
 				end
@@ -1889,6 +1890,19 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 					Function(SBool)
 					SaveTable[SaveName] = SBool
 				end))
+				function K:Toggle(SelectedBool)
+					ClickSound:Play()
+					if SelectedBool == true then
+						Cloned.Toggle.Text = 'On'
+						Cloned.Toggle.BackgroundColor3 = Color3.fromRGB(0, 255, 76)
+					elseif SelectedBool == false then
+						Cloned.Toggle.Text = 'Off'
+						Cloned.Toggle.BackgroundColor3 = Color3.fromRGB(255, 0, 76)
+					end
+					Function(SelectedBool)
+					SaveTable[SaveName] = SelectedBool
+				end
+				return K
 			end
 			return T
 		end
