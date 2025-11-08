@@ -1672,13 +1672,13 @@ function G:Intialize(HubTitle, ImageHub, HubColor, Undetected)
 	HandleColor(Closed, Main, 1.3)
 
 	TitleHub.Text = tostring(HubTitle)
+	LogoHub.Image = tostring(ImageHub)
+	Closed.Image = tostring(ImageHub)
 	if string.find(ImageHub:lower(), 'https://drive.google.com') then
 		LogoHub.Image = getcustomasset(HubTitle..'.png')
 		Closed.Image = getcustomasset(HubTitle..'.png')
-	else
-		LogoHub.Image = tostring(ImageHub)
-		Closed.Image = tostring(ImageHub)
 	end
+	
 	function C:AddSection(Title, Image)
 		local A = {}
 		local Title = Title or 'Untitled Section'
