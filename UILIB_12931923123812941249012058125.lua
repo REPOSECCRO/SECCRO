@@ -1653,6 +1653,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 			repeat task.wait() until pcall(function() readfile(i) end)
 		end
 		IterateCount = IterateCount + 1
+		task.wait()
 	end
 
 	if Message then
