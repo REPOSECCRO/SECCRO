@@ -1890,7 +1890,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 					Function(SBool)
 					SaveTable[SaveName] = SBool
 				end))
-				function K:Toggle(SelectedBool)
+				function K.Toggle(SelectedBool)
 					ClickSound:Play()
 					if SelectedBool == true then
 						Cloned.Toggle.Text = 'On'
