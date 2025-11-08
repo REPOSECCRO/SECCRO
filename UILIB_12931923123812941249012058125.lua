@@ -1595,9 +1595,10 @@ function AutoColorChildren(Instance)
 	HandleColor(Main['X'], Bar, 1.3)
 end
 
-function G:Intialize(HubTitle, ImageHub, HubColor)
+function G:Intialize(HubTitle, ImageHub, HubColor, Undetected)
 	local C = {}
 	local SaveTable = {}
+	local Undetected = Undetected or true
 	if not pcall(function()
 			readfile(getgenv().Global.ConfigName)
 		end) then
@@ -1639,29 +1640,31 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 		end
 		return Counter
 	end
+	
+	if Undetected == true then
+		local Message
+		local IterateCount = 1
 
-	local Message
-	local IterateCount = 1
-	for i, v in pairs(AssetsToDownload) do
-		if not pcall(function() readfile(i) end) then
-			if not Message then
-				Message = Instance.new('Message')
-				Message.Parent = gethui()
+		for i, v in pairs(AssetsToDownload) do
+			if not pcall(function() readfile(i) end) then
+				if not Message then
+					Message = Instance.new('Message')
+					Message.Parent = gethui()
+				end
+				Message.Text = 'AKUNDISCO UI LIBRARY: Downloading ('..i..')'..tostring(IterateCount)..'/'..tostring(DictionaryLength(AssetsToDownload))..' Assets to stay undetected'
+				writefile(i, game:HttpGet(v))
+				repeat task.wait() until pcall(function() readfile(i) end)
 			end
-			Message.Text = 'AKUNDISCO UI LIBRARY: Downloading ('..i..')'..tostring(IterateCount)..'/'..tostring(DictionaryLength(AssetsToDownload))..' Assets to stay undetected'
-			writefile(i, game:HttpGet(v))
-			repeat task.wait() until pcall(function() readfile(i) end)
+			IterateCount = IterateCount + 1
+			task.wait()
 		end
-		IterateCount = IterateCount + 1
-		task.wait()
-	end
+		if Message then
+			Message:Destroy()
+		end
 
-	if Message then
-		Message:Destroy()
 	end
 
 	local HubColor = HubColor or Color3.fromRGB(136, 6, 8)
-	local ImageHub = ImageHub or 'rbxassetid://1'
 	Main.BackgroundColor3 = HubColor
 	Main.UIStroke.Color = Color3.fromRGB(((Main.BackgroundColor3.R*255)*1.2)/1.4, ((Main.BackgroundColor3.G*255)*1.2)/1.4, ((Main.BackgroundColor3.B*255)*1.2)/1.4)
 	AutoColorChildren(Main)
@@ -1679,7 +1682,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 	function C:AddSection(Title, Image)
 		local A = {}
 		local Title = Title or 'Untitled Section'
-		local Image = Image or getcustomasset('TabButtonUI.png')
+		local Image = Image or (Undetected and getcustomasset("TabButtonUI.png")) or "rbxassetid://131861984096468"
 		local TabButton = Storage.TabButton:Clone()
 		local Section = Storage.SectionFrame:Clone()
 		TabButton.Title.Text = tostring(Title)
@@ -1713,7 +1716,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 		function A:AddSlider(Title, Image, SaveName)
 			local T = {}
 			local Title = Title or 'Slider Title'
-			local Image = Image or getcustomasset('SliderUI.png')
+			local Image = Image or (Undetected and getcustomasset("SliderUI.png")) or "rbxassetid://136315023522571"
 			local SaveName = SaveName or Title..'Save'
 			local Cloned = Storage.SectionSlider:Clone()
 			HandleColor(Cloned, Section, 1.3)
@@ -1746,7 +1749,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 		function A:AddButton(Title, Image)
 			local T = {}
 			local Title = Title or 'Button Title'
-			local Image = Image or getcustomasset('ButtonUI.png')
+			local Image = Image or (Undetected and getcustomasset("ButtonUI.png")) or "rbxassetid://104325266283928"
 			local Cloned = Storage.SectionButton:Clone()
 			HandleColor(Cloned, Section, 1.3)
 			Cloned.Title.Text = tostring(Title)
@@ -1803,7 +1806,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 				Cloned.DropdownPanel.Visible = Opened
 			end))
 			Cloned.DropdownPanel.Visible = false
-			Cloned.Logo.Image = Image or getcustomasset('DropdownUI.png')
+			Cloned.Logo.Image = Image or (Undetected and getcustomasset("DropdownUI.png")) or "rbxassetid://71128992355167"
 			Cloned.Title.Text = Title
 			Cloned.Visible = true
 			Cloned.Parent = Section
@@ -1856,7 +1859,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 			local Title = Title or 'Toggle Title'
 			local SBool = Bool or false
 			local SaveName = SaveName or Title..'Save'
-			local Image = Image or getcustomasset('ToggleUI.png')
+			local Image = Image or (Undetected and getcustomasset("ToggleUI.png")) or "rbxassetid://96621382395693"
 			local Cloned = Storage.SectionToggle:Clone()
 			HandleColor(Cloned, Section, 1.3)
 			Cloned.Title.Text = tostring(Title)
@@ -1913,7 +1916,7 @@ function G:Intialize(HubTitle, ImageHub, HubColor)
 			local Title = Title or 'TextBox Title'
 			local Placeholder = Placeholder or 'TextBox Placeholder'
 			local Value = Value or 'TextBox Value'
-			local Image = Image or getcustomasset('TextboxUI.png')
+			local Image =  Image or (Undetected and getcustomasset("TextboxUI.png")) or "rbxassetid://112688803491006"
 			local SaveName = SaveName or Title..'Save'
 			local Cloned = Storage.SectionBox:Clone()
 			Cloned.Parent = Section
